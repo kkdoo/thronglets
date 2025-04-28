@@ -2,15 +2,15 @@
 
 require "thor"
 
-module Example
+module Thronglets
   class CLI < Thor
     extend ThorExt::Start
 
     map %w[-v --version] => "version"
 
-    desc "version", "Display example version", hide: true
+    desc "version", "Display thronglets version", hide: true
     def version
-      say "example/#{VERSION} #{RUBY_DESCRIPTION}"
+      say "thronglets/#{VERSION} #{RUBY_DESCRIPTION}"
     end
   end
 end
