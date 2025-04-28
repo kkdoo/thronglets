@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Microservices with Ruby and Temporal"
   spec.homepage = "https://github.com/kkdoo/thronglets"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.4"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/kkdoo/thronglets/issues",
