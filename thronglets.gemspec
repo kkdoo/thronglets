@@ -29,4 +29,7 @@ Gem::Specification.new do |spec|
 
   # Runtime dependencies
   spec.add_dependency "thor", "~> 1.2"
+  spec.add_dependency "zeitwerk"
+  spec.add_dependency "listen"
+  spec.add_dependency "childprocess"
 end
