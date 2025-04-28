@@ -25,7 +25,7 @@ task :disable_overcommit do
   ENV["OVERCOMMIT_DISABLE"] = "1"
 end
 
-Rake::Task[:build].enhance [:disable_overcommit]
+Rake::Task[:build].enhance [ :disable_overcommit ]
 
 task :verify_gemspec_files do
   git_files = `git ls-files -z`.split("\x0")
@@ -45,7 +45,7 @@ task :verify_gemspec_files do
   ERROR
 end
 
-Rake::Task[:build].enhance [:verify_gemspec_files]
+Rake::Task[:build].enhance [ :verify_gemspec_files ]
 
 # == "rake bump" tasks ========================================================
 
@@ -94,16 +94,18 @@ module RubyVersions
     def all
       patches = versions.values_at(:stable, :security_maintenance).compact.flatten
       sorted_minor_versions = patches.map { |p| p[/\d+\.\d+/] }.sort_by(&:to_f)
-      [*sorted_minor_versions, "head"]
+      [ *sorted_minor_versions, "head" ]
     end
 
     private
 
-    def versions
-      @_versions ||= begin
-        yaml = URI.open("https://raw.githubusercontent.com/ruby/www.ruby-lang.org/HEAD/_data/downloads.yml")
-        YAML.safe_load(yaml, symbolize_names: true)
+      def versions
+        # rubocop:disable ThreadSafety/ClassInstanceVariable, Naming/MemoizedInstanceVariableName
+        @_versions ||= begin
+          yaml = URI.open("https://raw.githubusercontent.com/ruby/www.ruby-lang.org/HEAD/_data/downloads.yml")
+          YAML.safe_load(yaml, symbolize_names: true)
+        end
+        # rubocop:enable ThreadSafety/ClassInstanceVariable, Naming/MemoizedInstanceVariableName
       end
-    end
   end
 end
