@@ -28,9 +28,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = [ "lib" ]
 
   # Runtime dependencies
+  spec.add_dependency "activesupport"
+  spec.add_dependency "childprocess"
+  spec.add_dependency "listen"
   spec.add_dependency "thor", "~> 1.2"
   spec.add_dependency "zeitwerk"
-  spec.add_dependency "listen"
-  spec.add_dependency "childprocess"
-  spec.add_dependency "activesupport"
 end

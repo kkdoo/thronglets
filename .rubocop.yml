@@ -1,7 +1,6 @@
 plugins:
   - rubocop-rspec
   - rubocop-performance
-  - rubocop-thread_safety
   - rubocop-rake
   - rubocop-packaging
 
@@ -59,6 +58,7 @@ Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
 
 Style/ClassAndModuleChildren:
+  Enabled: false
   EnforcedStyle: compact
 
 RSpec/MultipleExpectations:

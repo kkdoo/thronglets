@@ -11,13 +11,13 @@ module Thronglets
     def load!
       list_classes_in_dir("app/activities").each do |activity|
         if can_register_class?(activity)
-          puts "Registered: %s" % activity
+          puts format("Registered: %s", activity)
           worker.register_activity(activity)
         end
       end
       list_classes_in_dir("app/workflows").each do |workflow|
         if can_register_class?(workflow)
-          puts "Registered: %s" % workflow
+          puts format("Registered: %s", workflow)
           worker.register_workflow(workflow)
         end
       end

@@ -30,23 +30,26 @@ module Thronglets
     end
 
     protected
+
       attr_reader :input_errors, :input_result
 
-      def self.input(&block)
-        @input = Dry::Schema.Params(&block)
+      class << self
+        def input(&)
+          @input = Dry::Schema.Params(&)
+        end
+
+        def input_schema
+          @input
+        end
       end
 
       def validate_input!(args)
         @input_result = input_schema.call(args)
         @params = input_result.to_h
         @input_errors = input_result.errors.to_h
-        if input_errors.present?
-          raise ValidationError.new(input_errors)
-        end
-      end
+        return unless input_errors.present?
 
-      def self.input_schema
-        @input
+        raise ValidationError, input_errors
       end
 
       def input_schema

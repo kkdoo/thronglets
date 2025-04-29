@@ -97,12 +97,12 @@ module RubyVersions
     private
 
       def versions
-        # rubocop:disable ThreadSafety/ClassInstanceVariable, Naming/MemoizedInstanceVariableName
+        # rubocop:disable Naming/MemoizedInstanceVariableName
         @_versions ||= begin
           yaml = URI.open("https://raw.githubusercontent.com/ruby/www.ruby-lang.org/HEAD/_data/downloads.yml")
           YAML.safe_load(yaml, symbolize_names: true)
         end
-        # rubocop:enable ThreadSafety/ClassInstanceVariable, Naming/MemoizedInstanceVariableName
+        # rubocop:enable Naming/MemoizedInstanceVariableName
       end
   end
 end
