@@ -21,6 +21,8 @@ module Thronglets
       end
       listener.start
       sleep
+    rescue Interrupt
+      process.stop # tries increasingly harsher methods to kill the process.
     end
 
     private

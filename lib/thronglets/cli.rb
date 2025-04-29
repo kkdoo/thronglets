@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "thor"
+require "irb"
 require_relative "worker"
 require_relative "listener"
 
@@ -10,6 +11,7 @@ class Thronglets::CLI < Thor
   map %w[-v --version] => "version"
   map %w[-w --worker] => "worker"
   map %w[-l --listen] => "listen"
+  map %w[-c --console] => "console"
 
   desc "version", "Display thronglets version", hide: true
   def version
@@ -18,7 +20,7 @@ class Thronglets::CLI < Thor
 
   desc "worker", "Start worker"
   def worker
-    say "start worker"
+    say "Starting worker"
     require File.join(Dir.pwd, 'config', 'temporal/env.rb')
 
     app = Thronglets::Worker.new
@@ -27,10 +29,19 @@ class Thronglets::CLI < Thor
 
   desc "listen", "Start worker in listen mode"
   def listen
-    say "start worker in listen mode"
+    say "Starting worker in listen mode"
     require File.join(Dir.pwd, 'config', 'temporal/env.rb')
 
     app = Thronglets::Listener.new
     app.run
+  end
+
+  desc "console", "Start console"
+  def console
+    say "Starting console"
+    require File.join(Dir.pwd, 'config', 'temporal/env.rb')
+
+    ARGV.clear # otherwise all script parameters get passed to IRB
+    IRB.start
   end
 end
