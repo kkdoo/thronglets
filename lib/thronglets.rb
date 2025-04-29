@@ -6,4 +6,5 @@ module Thronglets
   autoload :ThorExt, "thronglets/thor_ext"
   autoload :Workflow, "thronglets/workflow"
   autoload :Activity, "thronglets/activity"
+  autoload :Concerns, "thronglets/concerns/abstract_class"
 end

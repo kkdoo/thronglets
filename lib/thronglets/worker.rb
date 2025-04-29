@@ -18,7 +18,7 @@ module Thronglets
         "app/models",
         "app/models/concerns",
       ].each do |path|
-        loader.push_dir(path)
+        loader.push_dir(path) if Dir.exist?(path)
       end
       loader.setup
     end

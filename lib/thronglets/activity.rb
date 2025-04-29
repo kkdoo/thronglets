@@ -2,6 +2,8 @@
 
 module Thronglets
   class Activity < Temporal::Activity
+    include Concerns::AbstractClass
+
     attr_reader :params
 
     def call

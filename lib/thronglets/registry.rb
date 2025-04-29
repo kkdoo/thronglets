@@ -10,12 +10,16 @@ module Thronglets
 
     def load!
       list_classes_in_dir("app/activities").each do |activity|
-        pp activity
-        worker.register_activity(activity)
+        if can_register_class?(activity)
+          puts "Registered: %s" % activity
+          worker.register_activity(activity)
+        end
       end
       list_classes_in_dir("app/workflows").each do |workflow|
-        pp workflow
-        worker.register_workflow(workflow)
+        if can_register_class?(workflow)
+          puts "Registered: %s" % workflow
+          worker.register_workflow(workflow)
+        end
       end
     end
 
@@ -26,6 +30,10 @@ module Thronglets
           name = file.delete_prefix("#{path}/").delete_suffix(".rb")
           name.camelize.constantize
         end
+      end
+
+      def can_register_class?(klass)
+        !klass.abstract_class?
       end
   end
 end

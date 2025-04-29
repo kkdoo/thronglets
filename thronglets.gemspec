@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "zeitwerk"
   spec.add_dependency "listen"
   spec.add_dependency "childprocess"
+  spec.add_dependency "activesupport"
 end

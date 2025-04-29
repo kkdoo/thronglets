@@ -2,6 +2,8 @@
 
 module Thronglets
   class Workflow < Temporal::Workflow
+    include Concerns::AbstractClass
+
     attr_reader :params
 
     def call
