@@ -58,7 +58,7 @@ Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
 
 Style/ClassAndModuleChildren:
-  Enabled: false
+  Enabled: true
   EnforcedStyle: compact
 
 RSpec/MultipleExpectations:

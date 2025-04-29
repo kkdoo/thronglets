@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
-module Thronglets
-  class Activity < Temporal::Activity
-    include Concerns::AbstractClass
+class Thronglets::Activity < Temporal::Activity
+  include Thronglets::Concerns::AbstractClass
 
-    attr_reader :params
+  attr_reader :params
 
-    def call
-      raise "NotImplemented"
-    end
+  def call
+    raise "NotImplemented"
+  end
 
-    def execute(args)
-      @params = args
+  def execute(args)
+    @params = args
 
-      call
-    end
+    call
   end
 end
