@@ -7,6 +7,8 @@ module Thronglets
 
   module Concerns
     autoload :AbstractClass, "thronglets/concerns/abstract_class"
+    autoload :Output, "thronglets/concerns/output"
+    autoload :Input, "thronglets/concerns/input"
   end
 
   autoload :CLI, "thronglets/cli"

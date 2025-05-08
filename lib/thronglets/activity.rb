@@ -2,6 +2,8 @@
 
 class Thronglets::Activity < Temporal::Activity
   include Thronglets::Concerns::AbstractClass
+  include Thronglets::Concerns::Input
+  include Thronglets::Concerns::Output
 
   attr_reader :params
 
@@ -10,8 +12,18 @@ class Thronglets::Activity < Temporal::Activity
   end
 
   def execute(args)
-    @params = args.as_json
+    @params = validate_input!(args.as_json)
 
-    call
+    data = call.as_json
+
+    if output_schema
+      validate_output!(data)
+    else
+      data
+    end
+  rescue InputValidationError, OutputValidationError => e
+    {
+      errors: e.errors,
+    }.as_json
   end
 end
