@@ -10,7 +10,7 @@ class Thronglets::Activity < Temporal::Activity
   end
 
   def execute(args)
-    @params = args
+    @params = args.as_json
 
     call
   end

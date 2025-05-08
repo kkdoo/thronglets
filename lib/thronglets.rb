@@ -13,4 +13,5 @@ module Thronglets
   autoload :VERSION, "thronglets/version"
   autoload :Workflow, "thronglets/workflow"
   autoload :Activity, "thronglets/activity"
+  autoload :Loader, "thronglets/loader"
 end

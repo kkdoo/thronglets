@@ -44,9 +44,9 @@ class Thronglets::Workflow < Temporal::Workflow
 
     def validate_input!(args)
       @input_result = input_schema.call(args)
-      @params = input_result.to_h
+      @params = input_result.to_h.as_json
       @input_errors = input_result.errors.to_h
-      return unless input_errors.present?
+      return if input_errors.blank?
 
       raise ValidationError, input_errors
     end

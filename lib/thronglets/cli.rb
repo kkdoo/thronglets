@@ -40,6 +40,8 @@ class Thronglets::CLI < Thor
   def console
     say "Starting console"
     require File.join(Dir.pwd, "config", "temporal/env.rb")
+    loader = Thronglets::Loader.new
+    loader.load
 
     ARGV.clear # otherwise all script parameters get passed to IRB
     IRB.start
