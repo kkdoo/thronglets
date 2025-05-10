@@ -3,7 +3,7 @@
 [![Gem Version](https://img.shields.io/gem/v/thronglets)](https://rubygems.org/gems/thronglets)
 [![Gem Downloads](https://img.shields.io/gem/dt/thronglets)](https://www.ruby-toolbox.com/projects/thronglets)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kkdoo/thronglets/ci.yml)](https://github.com/kkdoo/thronglets/actions/workflows/ci.yml)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/kkdoo/thronglets)](https://codeclimate.com/github/kkdoo/thronglets)
+[![Maintainability](https://qlty.sh/badges/18c6dc12-d7e9-454b-99db-c8214708efb3/maintainability.svg)](https://qlty.sh/gh/kkdoo/projects/thronglets)
 
 **Thronglets** is an open source toolkit designed to assist engineering teams in systematically breaking down and decoupling monolithic applications into modular, scalable services. Whether you're targeting microservices, modular monoliths, or service-oriented architectures, Thronglets provides a set of practical tools and patterns to analyze dependencies, extract business domains, and incrementally refactor legacy codebases with minimal risk.
 
