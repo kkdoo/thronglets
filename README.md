@@ -1,19 +1,34 @@
-# thronglets
+# Thronglets
 
 [![Gem Version](https://img.shields.io/gem/v/thronglets)](https://rubygems.org/gems/thronglets)
 [![Gem Downloads](https://img.shields.io/gem/dt/thronglets)](https://www.ruby-toolbox.com/projects/thronglets)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kkdoo/thronglets/ci.yml)](https://github.com/kkdoo/thronglets/actions/workflows/ci.yml)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/kkdoo/thronglets)](https://codeclimate.com/github/kkdoo/thronglets)
 
-TODO: Description of this gem goes here.
+**Thronglets** is an open source toolkit designed to assist engineering teams in systematically breaking down and decoupling monolithic applications into modular, scalable services. Whether you're targeting microservices, modular monoliths, or service-oriented architectures, Thronglets provides a set of practical tools and patterns to analyze dependencies, extract business domains, and incrementally refactor legacy codebases with minimal risk.
+
+Built on top of [Temporal](https://temporal.io) to orchestrate long-running workflows and service boundaries, Thronglets seamlessly integrates with existing **Ruby on Rails** applications, making it ideal for teams modernizing legacy Rails monoliths.
 
 ---
 
+- [Why Use Thronglets?](#why-use-thronglets)
+- [Use Cases](#use-cases)
 - [Quick start](#quick-start)
 - [Support](#support)
 - [License](#license)
 - [Code of conduct](#code-of-conduct)
 - [Contribution guide](#contribution-guide)
+
+## Why Use Thronglets?
+
+Decoupling a monolith is complex and risky without the right tools. Thronglets gives you insight into your codebase, helps you plan a phased decomposition strategy, and reduces the cognitive and operational overhead of large-scale refactoring efforts.
+
+## Use Cases
+
+- Legacy systems modernization
+- Microservice migration strategies
+- Technical debt management
+- Domain-driven design alignment
 
 ## Quick start
 
