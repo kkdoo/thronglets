@@ -22,8 +22,8 @@ RSpec.describe Thronglets::Activity do
           result: {
             user_id: params["user_id"],
             action: params["action"],
-            timestamp: Time.now.iso8601
-          }
+            timestamp: Time.now.iso8601,
+          },
         }
       end
     end
@@ -38,8 +38,8 @@ RSpec.describe Thronglets::Activity do
       result: {
         user_id: 123,
         action: "test_action",
-        timestamp: Time.now.iso8601
-      }
+        timestamp: Time.now.iso8601,
+      },
     }
   end
 
@@ -129,4 +129,4 @@ RSpec.describe Thronglets::Activity do
       expect(described_class.ancestors).to include(Temporal::Activity)
     end
   end
-end 
+end

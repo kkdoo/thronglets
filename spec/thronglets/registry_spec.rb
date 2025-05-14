@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Thronglets::Registry do
-  let(:worker) { instance_double("Temporal::Worker") }
+  let(:worker) { instance_double(Temporal::Worker) }
   let(:registry) { described_class.new(worker) }
 
   # Test activities
@@ -46,10 +46,10 @@ RSpec.describe Thronglets::Registry do
     before do
       allow(worker).to receive(:register_activity)
       allow(worker).to receive(:register_workflow)
-      
+
       # Mock list_classes_in_dir for both activities and workflows
-      allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([concrete_activity])
-      allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([concrete_workflow])
+      allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([ concrete_activity ])
+      allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([ concrete_workflow ])
     end
 
     it "registers non-abstract activities" do
@@ -64,8 +64,8 @@ RSpec.describe Thronglets::Registry do
 
     context "with abstract classes" do
       before do
-        allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([abstract_activity])
-        allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([abstract_workflow])
+        allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([ abstract_activity ])
+        allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([ abstract_workflow ])
       end
 
       it "does not register abstract activities" do
@@ -97,8 +97,10 @@ RSpec.describe Thronglets::Registry do
 
     context "with mixed classes" do
       before do
-        allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([abstract_activity, concrete_activity])
-        allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([abstract_workflow, concrete_workflow])
+        allow(registry).to receive(:list_classes_in_dir).with("app/activities").and_return([ abstract_activity,
+                                                                                             concrete_activity, ])
+        allow(registry).to receive(:list_classes_in_dir).with("app/workflows").and_return([ abstract_workflow,
+                                                                                            concrete_workflow, ])
       end
 
       it "registers only non-abstract classes" do
@@ -123,7 +125,7 @@ RSpec.describe Thronglets::Registry do
 
   describe "#list_classes_in_dir" do
     let(:test_path) { "app/test_dir" }
-    let(:test_files) { ["app/test_dir/foo.rb", "app/test_dir/bar.rb"] }
+    let(:test_files) { [ "app/test_dir/foo.rb", "app/test_dir/bar.rb" ] }
 
     before do
       allow(Dir).to receive(:glob).with("#{test_path}/**/*.{rb}").and_return(test_files)
@@ -137,7 +139,7 @@ RSpec.describe Thronglets::Registry do
     end
 
     context "with nested directories" do
-      let(:test_files) { ["app/test_dir/nested/foo.rb", "app/test_dir/deeply/nested/bar.rb"] }
+      let(:test_files) { [ "app/test_dir/nested/foo.rb", "app/test_dir/deeply/nested/bar.rb" ] }
 
       it "handles nested directories correctly" do
         classes = registry.send(:list_classes_in_dir, test_path)
@@ -146,4 +148,4 @@ RSpec.describe Thronglets::Registry do
       end
     end
   end
-end 
+end

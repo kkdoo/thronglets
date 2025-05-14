@@ -81,6 +81,10 @@ Style/QuotedSymbols:
   Enabled: true
   EnforcedStyle: double_quotes
 
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
 # Align `when` with `end`.
 Layout/CaseIndentation:
   Enabled: true

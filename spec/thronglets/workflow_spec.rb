@@ -19,7 +19,7 @@ RSpec.describe Thronglets::Workflow do
       def call
         {
           success: true,
-          message: "Hello #{params["name"]}, you are #{params["age"]} years old!"
+          message: "Hello #{params["name"]}, you are #{params["age"]} years old!",
         }
       end
     end
@@ -108,4 +108,4 @@ RSpec.describe Thronglets::Workflow do
       end
     end
   end
-end 
+end
