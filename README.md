@@ -17,8 +17,6 @@
   - [Workflows](#1-workflows)
   - [Activities](#2-activities)
   - [Command Line Interface](#3-command-line-interface)
-- [Key Components](#key-components)
-  - [Worker](#worker)
 - [Input/Output Validation](#inputoutput-validation)
 - [Development Mode](#development-mode)
 - [Error Handling](#error-handling)
@@ -146,16 +144,6 @@ thronglets -l
 # Start console
 thronglets -c
 ```
-
-## Key Components
-
-### Worker
-
-The `Thronglets::Worker` manages:
-- Activity thread pool (20 threads)
-- Workflow thread pool (10 threads)
-- Automatic code loading
-- Activity and workflow registration
 
 ## Input/Output Validation
 
