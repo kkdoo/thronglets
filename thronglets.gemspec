@@ -32,6 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "childprocess"
   spec.add_dependency "dry-schema"
   spec.add_dependency "listen"
-  spec.add_dependency "thor", "~> 1.2"
+  spec.add_dependency "thor"
   spec.add_dependency "zeitwerk"
 end

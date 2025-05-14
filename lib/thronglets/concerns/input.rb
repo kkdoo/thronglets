@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "dry-schema"
+
 module Thronglets::Concerns::Input
   extend ActiveSupport::Concern
 
