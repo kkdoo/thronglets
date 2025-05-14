@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Thronglets::Concerns::AbstractClass
-  extend ActiveSupport::Concern
+  extend ::ActiveSupport::Concern
 
   class_methods do
     def abstract_class?
-      defined?(@abstract_class) && @abstract_class == true
+      !!(defined?(@abstract_class) && @abstract_class == true)
     end
 
     def abstract_class=(value)

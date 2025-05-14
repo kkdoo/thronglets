@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/all"
+
 module Thronglets
   module ThorExt
     autoload :Start, "thronglets/thor_ext/start"
