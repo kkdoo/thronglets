@@ -13,8 +13,8 @@ gem "google-protobuf", "~> 3.19"
 gem "temporal-ruby", github: "coinbase/temporal-ruby"
 
 group :development, :test do
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'rspec-expectations'
-  gem 'rspec-mocks'
+  gem "rspec"
+  gem "rspec-core"
+  gem "rspec-expectations"
+  gem "rspec-mocks"
 end

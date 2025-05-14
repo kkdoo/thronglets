@@ -5,7 +5,7 @@ module Thronglets::Concerns::AbstractClass
 
   class_methods do
     def abstract_class?
-      !!(defined?(@abstract_class) && @abstract_class == true)
+      !!(defined?(@abstract_class) && @abstract_class)
     end
 
     def abstract_class=(value)

@@ -18,4 +18,6 @@ module Thronglets
   autoload :Workflow, "thronglets/workflow"
   autoload :Activity, "thronglets/activity"
   autoload :Loader, "thronglets/loader"
+  autoload :Registry, "thronglets/registry"
+  autoload :Worker, "thronglets/worker"
 end
