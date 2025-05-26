@@ -607,3 +607,9 @@ RSpec/NestedGroups:
 
 Rake/Desc:
   Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "bundler"
+Bundler.require(:default)
 require "active_support/all"
 
 module Thronglets

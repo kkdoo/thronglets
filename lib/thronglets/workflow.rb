@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class Thronglets::Workflow < Temporal::Workflow
+require "temporalio/workflow"
+require "dry-schema"
+
+class Thronglets::Workflow < Temporalio::Workflow::Definition
   include Thronglets::Concerns::AbstractClass
   include Thronglets::Concerns::Input
   include Thronglets::Concerns::Output
@@ -12,18 +15,42 @@ class Thronglets::Workflow < Temporal::Workflow
   end
 
   def execute(args)
-    @params = validate_input!(args.as_json)
+    Temporalio::Workflow::Unsafe.illegal_call_tracing_disabled do
+      @params = validate_input!(args.as_json)
+    end
 
     data = call.as_json
 
-    if output_schema
-      validate_output!(data)
-    else
-      data
+    Temporalio::Workflow::Unsafe.illegal_call_tracing_disabled do
+      @_result = if output_schema
+        validate_output!(data)
+      else
+        data
+      end
     end
+
+    @_result
   rescue InputValidationError, OutputValidationError => e
     {
       errors: e.errors,
     }.as_json
   end
+
+  protected
+
+    def execute_activity(activity_name, args, schedule_to_close_timeout: 30.seconds)
+      Temporalio::Workflow.execute_activity(
+        activity_name,
+        args,
+        schedule_to_close_timeout:,
+      )
+    end
+
+  private
+
+    def parsed_args(args)
+      JSON.parse(args)
+    rescue JSON::ParserError
+      args
+    end
 end

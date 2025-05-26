@@ -31,7 +31,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "childprocess"
   spec.add_dependency "dry-schema"
+  spec.add_dependency "irb"
   spec.add_dependency "listen"
+  spec.add_dependency "rdoc"
+  spec.add_dependency "temporalio"
   spec.add_dependency "thor"
   spec.add_dependency "zeitwerk"
 end

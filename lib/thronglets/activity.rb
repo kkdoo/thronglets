@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class Thronglets::Activity < Temporal::Activity
+require "temporalio/activity"
+require "dry-schema"
+
+class Thronglets::Activity < Temporalio::Activity::Definition
   include Thronglets::Concerns::AbstractClass
   include Thronglets::Concerns::Input
   include Thronglets::Concerns::Output

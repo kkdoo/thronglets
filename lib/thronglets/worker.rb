@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-require "zeitwerk"
-require "temporal"
-require "temporal/worker"
+require "temporalio/client"
+require "temporalio/worker"
 require_relative "registry"
 
 class Thronglets::Worker
-  attr_reader :loader
+  attr_reader :loader, :activities, :workflows
 
   def initialize
     @loader = Thronglets::Loader.new
@@ -15,21 +14,35 @@ class Thronglets::Worker
 
   def run
     registry.load!
-    worker.start # runs forever
+    worker.run(shutdown_signals: [ "SIGINT" ])
+  end
+
+  def register_activity(activity)
+    @activities ||= []
+    @activities << activity
+  end
+
+  def register_workflow(workflow)
+    @workflows ||= []
+    @workflows << workflow
   end
 
   private
 
     def worker
-      @worker ||= Temporal::Worker.new(
-        # how many threads poll for activities
-        activity_thread_pool_size: 20,
-        # how many threads poll for workflows
-        workflow_thread_pool_size: 10,
+      @worker ||= Temporalio::Worker.new(
+        client: Thronglets::Env.client,
+        task_queue:,
+        activities:,
+        workflows:,
       )
     end
 
     def registry
-      @registry ||= Thronglets::Registry.new(worker)
+      @registry ||= Thronglets::Registry.new(self)
+    end
+
+    def task_queue
+      @task_queue ||= ENV.fetch("TLET_QUEUE", "default")
     end
 end
