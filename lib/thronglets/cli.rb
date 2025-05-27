@@ -35,6 +35,7 @@ class Thronglets::CLI < Thor
     app = Thronglets::Worker.new
     say "Running worker"
     app.run
+    say "Worker stopped"
   end
 
   desc "dev", "Start in dev mode"

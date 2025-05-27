@@ -29,9 +29,21 @@ class Thronglets::Worker
 
   private
 
+    def client
+      @client ||= begin
+        client = Thronglets::Env.client(max_retries: worker_max_retries)
+        puts "Connected to Temporal"
+        client
+      end
+    rescue Thronglets::Env::MaxRetriesExceededError => e
+      puts e.message
+      puts "Exiting..."
+      Kernel.exit(false)
+    end
+
     def worker
       @worker ||= Temporalio::Worker.new(
-        client: Thronglets::Env.client,
+        client:,
         task_queue:,
         activities:,
         workflows:,
@@ -44,5 +56,9 @@ class Thronglets::Worker
 
     def task_queue
       @task_queue ||= ENV.fetch("TLET_QUEUE", "default")
+    end
+
+    def worker_max_retries
+      @worker_max_retries ||= ENV.fetch("TLET_WORKER_MAX_RETRIES", 10)
     end
 end

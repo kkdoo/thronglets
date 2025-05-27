@@ -13,20 +13,30 @@ class Thronglets::Listener
   def run
     spawn_process
 
-    listener = Listen.to("app") do |_modified, _added, _removed|
-      process.stop
-    ensure
+    subscribe_listener
+    loop do
+      process.wait
+      puts "Process exited with code #{process.exit_code}"
+      puts "Restarting..."
       spawn_process
+      sleep 5
     end
-    listener.start
-    sleep
   rescue Interrupt
+    puts "Interrupted"
     process.stop # tries increasingly harsher methods to kill the process.
   end
 
   private
 
+    def subscribe_listener
+      listener = Listen.to("app") do |_modified, _added, _removed|
+        process.stop
+      end
+      listener.start
+    end
+
     def spawn_process
+      puts "Spawning process..."
       @process = ChildProcess.build("bundle", "exec", "thronglets", "-w")
       process.io.inherit!
       process.start
