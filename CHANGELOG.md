@@ -10,6 +10,7 @@ Release notes for this project are kept here: https://github.com/kkdoo/thronglet
 ### Added
 
 - Added various env vars options.
+- Added connection retries.
 
 ## 0.0.4 - 2025-05-14
 
