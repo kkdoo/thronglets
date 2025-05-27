@@ -10,6 +10,17 @@ class Thronglets::Workflow < Temporalio::Workflow::Definition
 
   attr_reader :params
 
+  def self.execute(workflow_name, *, options: {})
+    options[:id] ||= SecureRandom.uuid
+    options[:task_queue] ||= ENV.fetch("TLET_QUEUE", "default")
+
+    Thronglets::Env.client.execute_workflow(
+      workflow_name,
+      *,
+      **options,
+    )
+  end
+
   def call
     raise "NotImplemented"
   end
@@ -38,11 +49,13 @@ class Thronglets::Workflow < Temporalio::Workflow::Definition
 
   protected
 
-    def execute_activity(activity_name, args, schedule_to_close_timeout: 30.seconds)
+    def execute_activity(activity_name, *, options: {})
+      options[:schedule_to_close_timeout] ||= 30.seconds
+
       Temporalio::Workflow.execute_activity(
         activity_name,
-        args,
-        schedule_to_close_timeout:,
+        *,
+        schedule_to_close_timeout: options[:schedule_to_close_timeout],
       )
     end
 

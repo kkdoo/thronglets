@@ -31,7 +31,9 @@ class Thronglets::CLI < Thor
     say "Starting worker"
     load_options
 
+    say "Loading worker"
     app = Thronglets::Worker.new
+    say "Running worker"
     app.run
   end
 
@@ -79,6 +81,7 @@ class Thronglets::CLI < Thor
       if File.exist?(ENV.fetch("TLET_CONFIG"))
         say "Loading config from '#{ENV.fetch("TLET_CONFIG")}'"
         require File.join(Dir.pwd, ENV.fetch("TLET_CONFIG"))
+        say "Config loaded"
       else
         say "Config file '#{ENV.fetch("TLET_CONFIG")}' not found"
       end

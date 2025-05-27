@@ -9,12 +9,12 @@ class Thronglets::Worker
 
   def initialize
     @loader = Thronglets::Loader.new
-    loader.load
   end
 
   def run
+    loader.load
     registry.load!
-    worker.run(shutdown_signals: [ "SIGINT" ])
+    worker.run(shutdown_signals: %w[ SIGINT SIGTERM ])
   end
 
   def register_activity(activity)

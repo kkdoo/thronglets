@@ -27,7 +27,7 @@ class Thronglets::Listener
   private
 
     def spawn_process
-      @process = ChildProcess.build("thronglets", "-w")
+      @process = ChildProcess.build("bundle", "exec", "thronglets", "-w")
       process.io.inherit!
       process.start
     end
