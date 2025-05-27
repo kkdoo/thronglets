@@ -32,15 +32,16 @@ class Thronglets::Workflow < Temporalio::Workflow::Definition
 
     data = call.as_json
 
+    result_data = nil
     Temporalio::Workflow::Unsafe.illegal_call_tracing_disabled do
-      @_result = if output_schema
+      result_data = if output_schema
         validate_output!(data)
       else
         data
       end
     end
 
-    @_result
+    result_data
   rescue InputValidationError, OutputValidationError => e
     {
       errors: e.errors,
