@@ -55,7 +55,7 @@ class Thronglets::Workflow < Temporalio::Workflow::Definition
       Temporalio::Workflow.execute_activity(
         activity_name,
         *,
-        schedule_to_close_timeout: options[:schedule_to_close_timeout],
+        **options,
       )
     end
 
